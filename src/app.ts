@@ -3,6 +3,12 @@ dotenv.config();
 
 import express from "express";
 import mysql from "mysql2";
+import {
+  checkAuth,
+  loginUser,
+  registerUser,
+} from "./controllers/UserController";
+import { verifyToken } from "./middleware";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -17,6 +23,11 @@ const dbConfig = {
 export const db = mysql.createPool(dbConfig).promise();
 
 app.use(express.json());
+
+// USER
+app.post("/api/user/registration", registerUser);
+app.post("/api/user/login", loginUser);
+app.post("/api/user/check", verifyToken, checkAuth);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
