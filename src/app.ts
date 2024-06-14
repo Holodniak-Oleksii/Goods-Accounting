@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import cors from "cors";
 import express from "express";
 import mysql from "mysql2";
+
 import {
   checkAuth,
   loginUser,
@@ -21,7 +23,6 @@ const dbConfig = {
 };
 
 export const db = mysql.createPool(dbConfig).promise();
-const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
