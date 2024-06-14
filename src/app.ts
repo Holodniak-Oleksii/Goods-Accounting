@@ -21,7 +21,9 @@ const dbConfig = {
 };
 
 export const db = mysql.createPool(dbConfig).promise();
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 
 // USER
