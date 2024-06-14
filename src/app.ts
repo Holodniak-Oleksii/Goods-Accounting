@@ -25,10 +25,10 @@ const dbConfig = {
 export const db = mysql.createPool(dbConfig).promise();
 
 const corsOptions = {
-  origin: "http://localhost:5173", // дозволити доступ з цього домену
-  methods: "GET,POST,PUT,DELETE", // дозволити тільки ці методи
-  allowedHeaders: "Content-Type,Authorization", // дозволити тільки ці заголовки
-  credentials: true, // дозволити передачу облікових даних
+  origin: process.env.DATABASE,
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
