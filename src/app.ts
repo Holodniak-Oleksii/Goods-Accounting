@@ -25,7 +25,7 @@ const dbConfig = {
 export const db = mysql.createPool(dbConfig).promise();
 
 const corsOptions = {
-  origin: process.env.DATABASE,
+  origin: process.env.ALLOWED_SITE,
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
