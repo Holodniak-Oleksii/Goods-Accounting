@@ -6,11 +6,18 @@ import express from "express";
 import mysql from "mysql2";
 
 import {
+  createGood,
+  deleteGood,
+  getAllGoods,
+  getGoodById,
+  updateGood,
+} from "./controllers/GoodsController";
+import {
   checkAuth,
   loginUser,
   registerUser,
 } from "./controllers/UserController";
-import { verifyToken } from "./middleware";
+import { checkAdmin, verifyToken } from "./middleware";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -38,6 +45,13 @@ app.use(express.json());
 app.post("/api/user/registration", registerUser);
 app.post("/api/user/login", loginUser);
 app.post("/api/user/check", verifyToken, checkAuth);
+
+// GOODS
+app.get("/api/goods", getAllGoods);
+app.get("/api/goods/:id", getGoodById);
+app.post("/api/goods", verifyToken, checkAdmin, createGood);
+app.put("/api/goods/:id", verifyToken, checkAdmin, updateGood);
+app.delete("/api/goods/:id", verifyToken, checkAdmin, deleteGood);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

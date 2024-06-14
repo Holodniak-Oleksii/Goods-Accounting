@@ -1,3 +1,5 @@
+import { TRole } from "./general";
+
 export interface IGoods {
   id?: number;
   title: string;
@@ -13,5 +15,5 @@ export interface IUser {
   username: string;
   email: string;
   password: string;
-  role: "USER" | "ADMIN";
+  role: TRole;
 }
